@@ -26,7 +26,7 @@ Initial framework for a Military Asset Management System that supports secure tr
 │       ├── layout
 │       ├── pages
 │       └── styles
-└── scripts
+└──
 ```
 
 ## Quick Start
