@@ -1,0 +1,759 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+2 0 obj
+<< /Length 1911 >>
+stream
+BT
+/F1 11 Tf
+1 0 0 1 50 740 Tm
+16 TL
+(Military Asset Management System) Tj
+T*
+() Tj
+T*
+(1. Project Overview) Tj
+T*
+() Tj
+T*
+(Description) Tj
+T*
+() Tj
+T*
+(This solution provides an initial full-stack framework for managing military assets such as) Tj
+T*
+(vehicles, weapons and ammunition across multiple bases. The platform supports asset purchases,) Tj
+T*
+(transfers, assignments to personnel, and expenditure logging while surfacing opening balances,) Tj
+T*
+(closing balances and net movements through a secure dashboard.) Tj
+T*
+() Tj
+T*
+(Primary Objectives) Tj
+T*
+() Tj
+T*
+(* Improve transparency across bases) Tj
+T*
+(* Streamline logistics workflows) Tj
+T*
+(* Preserve traceability for all operational transactions) Tj
+T*
+(* Enforce accountability through role-based access control) Tj
+T*
+() Tj
+T*
+(Assumptions) Tj
+T*
+() Tj
+T*
+(* The requested technology constraint was prioritized: backend uses Node.js + Express,) Tj
+T*
+(database uses MongoDB, and frontend uses React + Vite) Tj
+T*
+(* Balances are derived from transaction history rather than a separate inventory snapshot) Tj
+T*
+(engine) Tj
+T*
+(* Closing balance is treated as: Opening Balance + Purchases + Transfer In - Transfer Out -) Tj
+T*
+(Assigned - Expended) Tj
+T*
+(* Base Commander and Logistics Officer accounts are linked to a single assigned base) Tj
+T*
+(* Transfers are treated as completed movements for the initial framework) Tj
+T*
+() Tj
+T*
+(Limitations) Tj
+T*
+() Tj
+T*
+(* No attachment storage for transfer or procurement documents in this first version) Tj
+T*
+(* No approval workflow for transfers or assignments yet) Tj
+T*
+(* No pagination or advanced analytics layer yet) Tj
+T*
+(* MongoDB was used because it was explicitly requested, even though the original prompt also) Tj
+T*
+(mentioned choosing a relational database) Tj
+T*
+() Tj
+T*
+(2. Tech Stack & Architecture) Tj
+T*
+() Tj
+T*
+(Frontend) Tj
+T*
+() Tj
+T*
+(* React 18 with Vite) Tj
+ET
+endstream
+endobj
+3 0 obj
+<< /Type /Page /Parent 18 0 R /MediaBox [0 0 612 792] /Contents 2 0 R /Resources << /Font << /F1 1 0 R >> >> >>
+endobj
+4 0 obj
+<< /Length 1464 >>
+stream
+BT
+/F1 11 Tf
+1 0 0 1 50 740 Tm
+16 TL
+(* React Router for navigation) Tj
+T*
+(* Axios for API communication) Tj
+T*
+(* React Hot Toast for feedback messages) Tj
+T*
+(* React Icons for iconography) Tj
+T*
+(* Custom CSS with light and dark mode support) Tj
+T*
+() Tj
+T*
+(Backend) Tj
+T*
+() Tj
+T*
+(* Node.js with Express) Tj
+T*
+(* JWT-based authentication) Tj
+T*
+(* Middleware-based RBAC enforcement) Tj
+T*
+(* Mongoose ODM for schema validation and relationships) Tj
+T*
+(* Morgan + dedicated audit log collection for request and transaction logging) Tj
+T*
+() Tj
+T*
+(Database) Tj
+T*
+() Tj
+T*
+(* MongoDB with referenced collections) Tj
+T*
+() Tj
+T*
+(Why This Stack) Tj
+T*
+() Tj
+T*
+(* React + Vite gives fast development feedback and a clean single-page workflow) Tj
+T*
+(* Express provides a straightforward REST API structure with middleware-based security) Tj
+T*
+(* MongoDB is flexible for document-driven operational records such as purchases, transfers,) Tj
+T*
+(and assignments) Tj
+T*
+(* Mongoose adds schema discipline, validation, indexing, and references between collections) Tj
+T*
+(* The stack is easy to extend into a more advanced enterprise deployment later) Tj
+T*
+() Tj
+T*
+(High-Level Architecture) Tj
+T*
+() Tj
+T*
+(React Frontend) Tj
+T*
+(|) Tj
+T*
+(v) Tj
+T*
+(Express REST API) Tj
+T*
+(|) Tj
+T*
+(+-- Auth Middleware \(JWT\)) Tj
+T*
+(+-- RBAC Middleware) Tj
+T*
+(+-- Controllers / Services) Tj
+T*
+(|) Tj
+T*
+(v) Tj
+T*
+(MongoDB Collections) Tj
+T*
+(|) Tj
+T*
+(+-- Users) Tj
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Page /Parent 18 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 1 0 R >> >> >>
+endobj
+6 0 obj
+<< /Length 804 >>
+stream
+BT
+/F1 11 Tf
+1 0 0 1 50 740 Tm
+16 TL
+(+-- Bases) Tj
+T*
+(+-- EquipmentTypes) Tj
+T*
+(+-- Purchases) Tj
+T*
+(+-- Transfers) Tj
+T*
+(+-- Assignments) Tj
+T*
+(+-- Expenditures) Tj
+T*
+(+-- AuditLogs) Tj
+T*
+() Tj
+T*
+(3. Data Models / Schema) Tj
+T*
+() Tj
+T*
+(Core Collections) Tj
+T*
+() Tj
+T*
+(Users) Tj
+T*
+() Tj
+T*
+(* `name`) Tj
+T*
+(* `email`) Tj
+T*
+(* `passwordHash`) Tj
+T*
+(* `role`) Tj
+T*
+(* `assignedBase`) Tj
+T*
+(* `active`) Tj
+T*
+() Tj
+T*
+(Bases) Tj
+T*
+() Tj
+T*
+(* `name`) Tj
+T*
+(* `code`) Tj
+T*
+(* `location`) Tj
+T*
+() Tj
+T*
+(EquipmentTypes) Tj
+T*
+() Tj
+T*
+(* `name`) Tj
+T*
+(* `category`) Tj
+T*
+(* `unitOfMeasure`) Tj
+T*
+(* `description`) Tj
+T*
+() Tj
+T*
+(Purchases) Tj
+T*
+() Tj
+T*
+(* `base`) Tj
+T*
+(* `equipmentType`) Tj
+T*
+(* `quantity`) Tj
+T*
+(* `unitCost`) Tj
+T*
+(* `vendor`) Tj
+T*
+(* `referenceNo`) Tj
+ET
+endstream
+endobj
+7 0 obj
+<< /Type /Page /Parent 18 0 R /MediaBox [0 0 612 792] /Contents 6 0 R /Resources << /Font << /F1 1 0 R >> >> >>
+endobj
+8 0 obj
+<< /Length 848 >>
+stream
+BT
+/F1 11 Tf
+1 0 0 1 50 740 Tm
+16 TL
+(* `purchasedAt`) Tj
+T*
+(* `createdBy`) Tj
+T*
+() Tj
+T*
+(Transfers) Tj
+T*
+() Tj
+T*
+(* `fromBase`) Tj
+T*
+(* `toBase`) Tj
+T*
+(* `equipmentType`) Tj
+T*
+(* `quantity`) Tj
+T*
+(* `reason`) Tj
+T*
+(* `transferredAt`) Tj
+T*
+(* `status`) Tj
+T*
+(* `createdBy`) Tj
+T*
+() Tj
+T*
+(Assignments) Tj
+T*
+() Tj
+T*
+(* `base`) Tj
+T*
+(* `equipmentType`) Tj
+T*
+(* `quantity`) Tj
+T*
+(* `assigneeName`) Tj
+T*
+(* `assigneeIdentifier`) Tj
+T*
+(* `purpose`) Tj
+T*
+(* `assignedAt`) Tj
+T*
+(* `createdBy`) Tj
+T*
+() Tj
+T*
+(Expenditures) Tj
+T*
+() Tj
+T*
+(* `base`) Tj
+T*
+(* `equipmentType`) Tj
+T*
+(* `quantity`) Tj
+T*
+(* `reason`) Tj
+T*
+(* `operationReference`) Tj
+T*
+(* `expendedAt`) Tj
+T*
+(* `createdBy`) Tj
+T*
+() Tj
+T*
+(AuditLogs) Tj
+T*
+() Tj
+T*
+(* `actor`) Tj
+T*
+(* `action`) Tj
+T*
+(* `module`) Tj
+T*
+(* `resourceId`) Tj
+T*
+(* `metadata`) Tj
+ET
+endstream
+endobj
+9 0 obj
+<< /Type /Page /Parent 18 0 R /MediaBox [0 0 612 792] /Contents 8 0 R /Resources << /Font << /F1 1 0 R >> >> >>
+endobj
+10 0 obj
+<< /Length 1551 >>
+stream
+BT
+/F1 11 Tf
+1 0 0 1 50 740 Tm
+16 TL
+(* `ipAddress`) Tj
+T*
+(* `userAgent`) Tj
+T*
+(* `createdAt`) Tj
+T*
+() Tj
+T*
+(Relationship Summary) Tj
+T*
+() Tj
+T*
+(* One base can have many users, purchases, assignments and expenditures) Tj
+T*
+(* One equipment type can appear in many purchases, transfers, assignments and expenditures) Tj
+T*
+(* Transfers connect two bases and preserve movement history) Tj
+T*
+(* Audit logs reference the acting user and the affected business record) Tj
+T*
+() Tj
+T*
+(4. RBAC Explanation) Tj
+T*
+() Tj
+T*
+(Roles) Tj
+T*
+() Tj
+T*
+(Admin) Tj
+T*
+() Tj
+T*
+(* Full access to all bases and all modules) Tj
+T*
+(* Can view global dashboard data) Tj
+T*
+(* Can create purchases, transfers, assignments and expenditures) Tj
+T*
+() Tj
+T*
+(Base Commander) Tj
+T*
+() Tj
+T*
+(* Access restricted to their assigned base) Tj
+T*
+(* Can view dashboard data for their base) Tj
+T*
+(* Can create and view purchases, transfers, assignments and expenditures for their base) Tj
+T*
+() Tj
+T*
+(Logistics Officer) Tj
+T*
+() Tj
+T*
+(* Access restricted to their assigned base) Tj
+T*
+(* Can view dashboard data for their base) Tj
+T*
+(* Can create and view purchases and transfers) Tj
+T*
+(* Cannot create assignments or expenditures) Tj
+T*
+() Tj
+T*
+(Enforcement Method) Tj
+T*
+() Tj
+T*
+(* JWT authentication identifies the current user) Tj
+T*
+(* Express middleware protects routes) Tj
+T*
+(* Role authorization middleware checks operation-level access) Tj
+T*
+(* Base scope helpers prevent users from acting outside their assigned base) Tj
+T*
+() Tj
+T*
+(5. API Logging) Tj
+ET
+endstream
+endobj
+11 0 obj
+<< /Type /Page /Parent 18 0 R /MediaBox [0 0 612 792] /Contents 10 0 R /Resources << /Font << /F1 1 0 R >> >> >>
+endobj
+12 0 obj
+<< /Length 1257 >>
+stream
+BT
+/F1 11 Tf
+1 0 0 1 50 740 Tm
+16 TL
+() Tj
+T*
+(How Logging Is Handled) Tj
+T*
+() Tj
+T*
+(* Morgan logs incoming HTTP requests at the API layer) Tj
+T*
+(* A dedicated `AuditLog` collection stores business transaction events) Tj
+T*
+(* Every create operation for purchases, transfers, assignments and expenditures writes an) Tj
+T*
+(audit entry) Tj
+T*
+(* Each audit log stores:) Tj
+T*
+(- actor) Tj
+T*
+(- action type) Tj
+T*
+(- module) Tj
+T*
+(- resource id) Tj
+T*
+(- metadata such as base, equipment type and quantity) Tj
+T*
+(- IP address) Tj
+T*
+(- user agent) Tj
+T*
+() Tj
+T*
+(Benefits) Tj
+T*
+() Tj
+T*
+(* Supports operational traceability) Tj
+T*
+(* Enables audit readiness and accountability reviews) Tj
+T*
+(* Simplifies incident investigation and change tracking) Tj
+T*
+() Tj
+T*
+(6. Setup Instructions) Tj
+T*
+() Tj
+T*
+(Prerequisites) Tj
+T*
+() Tj
+T*
+(* Node.js 20+ recommended) Tj
+T*
+(* npm 10+) Tj
+T*
+(* MongoDB local instance or MongoDB Atlas) Tj
+T*
+() Tj
+T*
+(Backend Setup) Tj
+T*
+() Tj
+T*
+(1. Open the `backend` folder) Tj
+T*
+(2. Copy `.env.example` to `.env`) Tj
+T*
+(3. Configure:) Tj
+T*
+(- `PORT`) Tj
+T*
+(- `MONGODB_URI`) Tj
+T*
+(- `JWT_SECRET`) Tj
+T*
+(- `CLIENT_URL`) Tj
+T*
+(4. Run `npm install`) Tj
+T*
+(5. Run `npm run seed`) Tj
+T*
+(6. Run `npm run dev`) Tj
+ET
+endstream
+endobj
+13 0 obj
+<< /Type /Page /Parent 18 0 R /MediaBox [0 0 612 792] /Contents 12 0 R /Resources << /Font << /F1 1 0 R >> >> >>
+endobj
+14 0 obj
+<< /Length 1126 >>
+stream
+BT
+/F1 11 Tf
+1 0 0 1 50 740 Tm
+16 TL
+() Tj
+T*
+(Frontend Setup) Tj
+T*
+() Tj
+T*
+(1. Open the `frontend` folder) Tj
+T*
+(2. Copy `.env.example` to `.env`) Tj
+T*
+(3. Set `VITE_API_URL=http://localhost:5000/api/v1`) Tj
+T*
+(4. Run `npm install`) Tj
+T*
+(5. Run `npm run dev`) Tj
+T*
+() Tj
+T*
+(7. API Endpoints) Tj
+T*
+() Tj
+T*
+(Authentication) Tj
+T*
+() Tj
+T*
+(* `POST /api/v1/auth/login`) Tj
+T*
+(* `GET /api/v1/auth/me`) Tj
+T*
+() Tj
+T*
+(Dashboard) Tj
+T*
+() Tj
+T*
+(* `GET /api/v1/dashboard/summary`) Tj
+T*
+(* `GET /api/v1/dashboard/net-movement-details`) Tj
+T*
+() Tj
+T*
+(Master Data / Lookups) Tj
+T*
+() Tj
+T*
+(* `GET /api/v1/lookups/bases`) Tj
+T*
+(* `GET /api/v1/lookups/equipment-types`) Tj
+T*
+(* `GET /api/v1/lookups/users`) Tj
+T*
+() Tj
+T*
+(Transactions) Tj
+T*
+() Tj
+T*
+(* `GET /api/v1/purchases`) Tj
+T*
+(* `POST /api/v1/purchases`) Tj
+T*
+(* `GET /api/v1/transfers`) Tj
+T*
+(* `POST /api/v1/transfers`) Tj
+T*
+(* `GET /api/v1/assignments`) Tj
+T*
+(* `POST /api/v1/assignments`) Tj
+T*
+(* `GET /api/v1/expenditures`) Tj
+T*
+(* `POST /api/v1/expenditures`) Tj
+T*
+() Tj
+T*
+(8. Login Credentials) Tj
+T*
+() Tj
+T*
+(Seeded Accounts) Tj
+T*
+() Tj
+ET
+endstream
+endobj
+15 0 obj
+<< /Type /Page /Parent 18 0 R /MediaBox [0 0 612 792] /Contents 14 0 R /Resources << /Font << /F1 1 0 R >> >> >>
+endobj
+16 0 obj
+<< /Length 731 >>
+stream
+BT
+/F1 11 Tf
+1 0 0 1 50 740 Tm
+16 TL
+(* Admin) Tj
+T*
+(- Email: `admin@milassets.local`) Tj
+T*
+(- Password: `Admin@123`) Tj
+T*
+() Tj
+T*
+(* Base Commander) Tj
+T*
+(- Email: `commander.alpha@milassets.local`) Tj
+T*
+(- Password: `Commander@123`) Tj
+T*
+() Tj
+T*
+(* Logistics Officer) Tj
+T*
+(- Email: `logistics.alpha@milassets.local`) Tj
+T*
+(- Password: `Logistics@123`) Tj
+T*
+() Tj
+T*
+(Additional Notes) Tj
+T*
+() Tj
+T*
+(* The dashboard supports date, base and equipment type filters) Tj
+T*
+(* Clicking Net Movement opens a detailed modal for Purchases, Transfer In and Transfer Out) Tj
+T*
+(* The frontend includes both light and dark themes) Tj
+T*
+(* The project uses a clean folder structure to support future expansion) Tj
+T*
+() Tj
+ET
+endstream
+endobj
+17 0 obj
+<< /Type /Page /Parent 18 0 R /MediaBox [0 0 612 792] /Contents 16 0 R /Resources << /Font << /F1 1 0 R >> >> >>
+endobj
+18 0 obj
+<< /Type /Pages /Count 8 /Kids [3 0 R 5 0 R 7 0 R 9 0 R 11 0 R 13 0 R 15 0 R 17 0 R] >>
+endobj
+19 0 obj
+<< /Type /Catalog /Pages 18 0 R >>
+endobj
+xref
+0 20
+0000000000 65535 f 
+0000000009 00000 n 
+0000000079 00000 n 
+0000002042 00000 n 
+0000002169 00000 n 
+0000003685 00000 n 
+0000003812 00000 n 
+0000004667 00000 n 
+0000004794 00000 n 
+0000005693 00000 n 
+0000005820 00000 n 
+0000007424 00000 n 
+0000007553 00000 n 
+0000008863 00000 n 
+0000008992 00000 n 
+0000010171 00000 n 
+0000010300 00000 n 
+0000011083 00000 n 
+0000011212 00000 n 
+0000011316 00000 n 
+trailer
+<< /Size 20 /Root 19 0 R >>
+startxref
+11367
+%%EOF

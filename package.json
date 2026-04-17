@@ -1,0 +1,8 @@
+{
+  "name": "military-asset-management-system",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "docs:pdf": "node scripts/generate-project-pdf.js"
+  }
+}
